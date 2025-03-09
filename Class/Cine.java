@@ -1,5 +1,8 @@
+import java.util.ArrayList;
+
 public class Cine {
     private String nombre;
+    // private ArrayList<Sala> salas;
 
     public Cine(String nombre) {
         if (nombre == null || nombre.isEmpty() || nombre == "!"
@@ -13,6 +16,7 @@ public class Cine {
             throw new IllegalArgumentException("El nombre del cine no puede ser nulo o vacío.");
         }
         this.nombre = nombre;
+        // this.salas = new ArrayList<>();
 
     }
 
@@ -32,5 +36,20 @@ public class Cine {
             throw new IllegalArgumentException("El nombre del cine no puede ser nulo o vacío.");
         }
         this.nombre = nombre;
+    }
+
+    // public ArrayList<Sala> getSalas() {
+    // return salas;
+    // }
+
+    // public void agregarSala(Sala sala) {
+    // this.salas.add(sala);
+    // }
+    @Override
+    public String toString() {
+        return "Cine{" +
+                "nombre='" + nombre + '\'' +
+                // ", salas=" + salas +
+                '}';
     }
 }
