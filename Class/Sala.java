@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Sala {
     private int numero;
     private int capacidad;
-    // private ArrayList<Funcion> funciones;
+    private ArrayList<Funcion> funciones;
 
     public Sala(int numero, int capacidad) {
         if (capacidad <= 0) {
@@ -11,7 +11,7 @@ public class Sala {
         }
         this.numero = numero;
         this.capacidad = capacidad;
-        // this.funciones = new ArrayList<>();
+        this.funciones = new ArrayList<>();
     }
 
     public int getNumero() {
@@ -33,20 +33,20 @@ public class Sala {
         this.capacidad = capacidad;
     }
 
-    // public ArrayList<Funcion> getFunciones() {
-    // return funciones;
-    // }
+    public ArrayList<Funcion> getFunciones() {
+        return funciones;
+    }
 
-    // public void agregarFuncion(Funcion funcion) {
-    // this.funciones.add(funcion);
-    // }
+    public void agregarFuncion(Funcion funcion) {
+        this.funciones.add(funcion);
+    }
 
     @Override
     public String toString() {
         return "Sala{" +
                 "numero=" + numero +
                 ", capacidad=" + capacidad +
-                // ", funciones=" + funciones +
+                ", funciones=" + funciones +
                 '}';
     }
 }

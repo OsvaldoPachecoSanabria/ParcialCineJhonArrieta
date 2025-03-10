@@ -38,7 +38,14 @@ public class Pelicula {
     }
 
     public void setTitulo(String titulo) {
-        if (titulo == null || titulo.isEmpty()) {
+        if (titulo == null || titulo.isEmpty() || titulo == "!"
+                || titulo == "@" || titulo == "#" || titulo == "$"
+                || titulo == "%" || titulo == "^" || titulo == "&"
+                || titulo == "*" || titulo == "(" || titulo == ")"
+                || titulo == "-" || titulo == "_" || titulo == "+"
+                || titulo == "=" || titulo == "[" || titulo == "]"
+                || titulo == "{" || titulo == "}" || titulo == ";"
+                || titulo == ":" || titulo == "'" || titulo == "\"") {
             throw new IllegalArgumentException("El título de la película no puede ser nulo o vacío.");
         }
         this.titulo = titulo;
