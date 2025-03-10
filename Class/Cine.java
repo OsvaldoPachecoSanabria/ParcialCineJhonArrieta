@@ -5,19 +5,12 @@ public class Cine {
     private ArrayList<Sala> salas;
 
     public Cine(String nombre) {
-        if (nombre == null || nombre.isEmpty() || nombre == "!"
-                || nombre == "@" || nombre == "#" || nombre == "$"
-                || nombre == "%" || nombre == "^" || nombre == "&"
-                || nombre == "*" || nombre == "(" || nombre == ")"
-                || nombre == "-" || nombre == "_" || nombre == "+"
-                || nombre == "=" || nombre == "[" || nombre == "]"
-                || nombre == "{" || nombre == "}" || nombre == ";"
-                || nombre == ":" || nombre == "'" || nombre == "\"") {
-            throw new IllegalArgumentException("El nombre del cine no puede ser nulo o vacío.");
+        if (nombre == null || nombre.isEmpty() || !nombre.matches("[a-zA-Z0-9 ]+")) {
+            throw new IllegalArgumentException(
+                    "El nombre del cine no puede ser nulo, vacío o contener caracteres especiales.");
         }
         this.nombre = nombre;
         this.salas = new ArrayList<>();
-
     }
 
     public String getNombre() {
@@ -25,15 +18,9 @@ public class Cine {
     }
 
     public void setNombre(String nombre) {
-        if (nombre == null || nombre.isEmpty() || nombre == "!"
-                || nombre == "@" || nombre == "#" || nombre == "$"
-                || nombre == "%" || nombre == "^" || nombre == "&"
-                || nombre == "*" || nombre == "(" || nombre == ")"
-                || nombre == "-" || nombre == "_" || nombre == "+"
-                || nombre == "=" || nombre == "[" || nombre == "]"
-                || nombre == "{" || nombre == "}" || nombre == ";"
-                || nombre == ":" || nombre == "'" || nombre == "\"") {
-            throw new IllegalArgumentException("El nombre del cine no puede ser nulo o vacío.");
+        if (nombre == null || nombre.isEmpty() || !nombre.matches("[a-zA-Z0-9 ]+")) {
+            throw new IllegalArgumentException(
+                    "El nombre del cine no puede ser nulo, vacío o contener caracteres especiales.");
         }
         this.nombre = nombre;
     }

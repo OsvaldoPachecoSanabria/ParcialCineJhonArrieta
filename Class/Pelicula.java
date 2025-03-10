@@ -1,3 +1,4 @@
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -67,9 +68,9 @@ public class Pelicula {
     }
 
     public void setClasificacion(String clasificacion) {
-        if (!clasificacion.equals("Apta todo público") && !clasificacion.equals("+9 años") &&
-                !clasificacion.equals("+15 años") && !clasificacion.equals("+18 años")) {
-            throw new IllegalArgumentException("Clasificación inválida.");
+        if (!clasificacion.equals("Apta todo publico") || !clasificacion.equals("+9 años") ||
+                !clasificacion.equals("+15 años") || !clasificacion.equals("+18 años")) {
+            throw new IllegalArgumentException("Clasificación invalida.");
         }
         this.clasificacion = clasificacion;
     }

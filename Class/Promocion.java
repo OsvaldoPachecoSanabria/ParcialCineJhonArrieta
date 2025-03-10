@@ -1,3 +1,4 @@
+
 public class Promocion {
     private String descripcion;
 
