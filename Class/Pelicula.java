@@ -1,4 +1,3 @@
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -8,16 +7,11 @@ public class Pelicula {
     private String clasificacion;
     private LocalDate fechaEstreno;
     private ArrayList<Opinion> opiniones;
+    private ArrayList<Actor> elenco;
+    private ArrayList<Director> directores;
 
     public Pelicula(String titulo, int duracion, String clasificacion, LocalDate fechaEstreno) {
-        if (titulo == null || titulo.isEmpty() || titulo == "!"
-                || titulo == "@" || titulo == "#" || titulo == "$"
-                || titulo == "%" || titulo == "^" || titulo == "&"
-                || titulo == "*" || titulo == "(" || titulo == ")"
-                || titulo == "-" || titulo == "_" || titulo == "+"
-                || titulo == "=" || titulo == "[" || titulo == "]"
-                || titulo == "{" || titulo == "}" || titulo == ";"
-                || titulo == ":" || titulo == "'" || titulo == "\"") {
+        if (titulo == null || titulo.isEmpty() || titulo.matches("[a-zA-Z0-9 ]+")) {
             throw new IllegalArgumentException("El título de la película no puede ser nulo o vacío.");
         }
         if (duracion <= 0) {
@@ -32,6 +26,8 @@ public class Pelicula {
         this.clasificacion = clasificacion;
         this.fechaEstreno = fechaEstreno;
         this.opiniones = new ArrayList<>();
+        this.elenco = new ArrayList<>();
+        this.directores = new ArrayList<>();
     }
 
     public String getTitulo() {
@@ -39,14 +35,7 @@ public class Pelicula {
     }
 
     public void setTitulo(String titulo) {
-        if (titulo == null || titulo.isEmpty() || titulo == "!"
-                || titulo == "@" || titulo == "#" || titulo == "$"
-                || titulo == "%" || titulo == "^" || titulo == "&"
-                || titulo == "*" || titulo == "(" || titulo == ")"
-                || titulo == "-" || titulo == "_" || titulo == "+"
-                || titulo == "=" || titulo == "[" || titulo == "]"
-                || titulo == "{" || titulo == "}" || titulo == ";"
-                || titulo == ":" || titulo == "'" || titulo == "\"") {
+        if (titulo == null || titulo.isEmpty() || titulo.matches("[a-zA-Z0-9 ]+")) {
             throw new IllegalArgumentException("El título de la película no puede ser nulo o vacío.");
         }
         this.titulo = titulo;
@@ -68,9 +57,9 @@ public class Pelicula {
     }
 
     public void setClasificacion(String clasificacion) {
-        if (!clasificacion.equals("Apta todo publico") || !clasificacion.equals("+9 años") ||
-                !clasificacion.equals("+15 años") || !clasificacion.equals("+18 años")) {
-            throw new IllegalArgumentException("Clasificación invalida.");
+        if (!clasificacion.equals("Apta todo público") && !clasificacion.equals("+9 años") &&
+                !clasificacion.equals("+15 años") && !clasificacion.equals("+18 años")) {
+            throw new IllegalArgumentException("Clasificación inválida.");
         }
         this.clasificacion = clasificacion;
     }
@@ -91,6 +80,22 @@ public class Pelicula {
         this.opiniones.add(opinion);
     }
 
+    public ArrayList<Actor> getElenco() {
+        return elenco;
+    }
+
+    public void agregarActor(Actor actor) {
+        this.elenco.add(actor);
+    }
+
+    public ArrayList<Director> getDirectores() {
+        return directores;
+    }
+
+    public void agregarDirector(Director director) {
+        this.directores.add(director);
+    }
+
     @Override
     public String toString() {
         return "Pelicula{" +
@@ -99,6 +104,8 @@ public class Pelicula {
                 ", clasificacion='" + clasificacion + '\'' +
                 ", fechaEstreno=" + fechaEstreno +
                 ", opiniones=" + opiniones +
+                ", elenco=" + elenco +
+                ", directores=" + directores +
                 '}';
     }
 }
