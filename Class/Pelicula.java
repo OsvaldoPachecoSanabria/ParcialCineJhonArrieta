@@ -11,7 +11,7 @@ public class Pelicula {
     private ArrayList<Director> directores;
 
     public Pelicula(String titulo, int duracion, String clasificacion, LocalDate fechaEstreno) {
-        if (titulo == null || titulo.isEmpty() || titulo.matches("[a-zA-Z0-9 ]+")) {
+        if (titulo == null || titulo.isEmpty()) {
             throw new IllegalArgumentException("El título de la película no puede ser nulo o vacío.");
         }
         if (duracion <= 0) {
@@ -35,7 +35,7 @@ public class Pelicula {
     }
 
     public void setTitulo(String titulo) {
-        if (titulo == null || titulo.isEmpty() || titulo.matches("[a-zA-Z0-9 ]+")) {
+        if (titulo == null || titulo.isEmpty()) {
             throw new IllegalArgumentException("El título de la película no puede ser nulo o vacío.");
         }
         this.titulo = titulo;

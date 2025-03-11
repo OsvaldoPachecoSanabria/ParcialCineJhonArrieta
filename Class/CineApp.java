@@ -7,6 +7,9 @@ import java.util.Scanner;
 public class CineApp {
     private static ArrayList<Pelicula> peliculas = new ArrayList<>();
     private static ArrayList<Cine> cines = new ArrayList<>();
+    private static ArrayList<Actor> actores = new ArrayList<>();
+    private static ArrayList<Director> directores = new ArrayList<>();
+    private static ArrayList<Promocion> promociones = new ArrayList<>();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -32,16 +35,25 @@ public class CineApp {
                         agregarOpinion(scanner);
                         break;
                     case 5:
+                        agregarActor(scanner);
+                        break;
+                    case 6:
+                        agregarDirector(scanner);
+                        break;
+                    case 7:
+                        agregarPromocion(scanner);
+                        break;
+                    case 8:
                         System.out.println("Saliendo del programa...");
                         break;
                     default:
                         System.out.println("Opción inválida. Intente nuevamente.");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Entrada inválida. Por favor, ingrese un número del 1 al 5.");
+                System.out.println("Entrada inválida. Por favor, ingrese un número del 1 al 8.");
                 scanner.next(); // Consumir la entrada no válida
             }
-        } while (opcion != 5);
+        } while (opcion != 8);
 
         scanner.close();
     }
@@ -52,7 +64,10 @@ public class CineApp {
         System.out.println("2. Registrar una función en una sala");
         System.out.println("3. Mostrar la cartelera");
         System.out.println("4. Agregar una opinión de usuario sobre una película");
-        System.out.println("5. Salir del programa");
+        System.out.println("5. Agregar un actor");
+        System.out.println("6. Agregar un director");
+        System.out.println("7. Agregar una promoción");
+        System.out.println("8. Salir del programa");
         System.out.print("Seleccione una opción: ");
     }
 
@@ -130,6 +145,39 @@ public class CineApp {
         }
 
         Pelicula pelicula = new Pelicula(titulo, duracion, clasificacion, fechaEstreno);
+
+        // Agregar actores a la película
+        System.out.print("¿Desea agregar actores a la película? (s/n): ");
+        String respuesta = scanner.nextLine();
+        if (respuesta.equalsIgnoreCase("s")) {
+            boolean agregarMas = true;
+            while (agregarMas) {
+                System.out.print("Ingrese el nombre del actor: ");
+                String nombreActor = scanner.nextLine();
+                Actor actor = new Actor(nombreActor);
+                pelicula.agregarActor(actor);
+                System.out.print("¿Desea agregar otro actor? (s/n): ");
+                respuesta = scanner.nextLine();
+                agregarMas = respuesta.equalsIgnoreCase("s");
+            }
+        }
+
+        // Agregar directores a la película
+        System.out.print("¿Desea agregar directores a la película? (s/n): ");
+        respuesta = scanner.nextLine();
+        if (respuesta.equalsIgnoreCase("s")) {
+            boolean agregarMas = true;
+            while (agregarMas) {
+                System.out.print("Ingrese el nombre del director: ");
+                String nombreDirector = scanner.nextLine();
+                Director director = new Director(nombreDirector);
+                pelicula.agregarDirector(director);
+                System.out.print("¿Desea agregar otro director? (s/n): ");
+                respuesta = scanner.nextLine();
+                agregarMas = respuesta.equalsIgnoreCase("s");
+            }
+        }
+
         peliculas.add(pelicula);
         System.out.println("Película agregada exitosamente.");
     }
@@ -180,6 +228,23 @@ public class CineApp {
         }
 
         Funcion funcion = new Funcion(pelicula, horario);
+
+        // Agregar promociones a la función
+        System.out.print("¿Desea agregar promociones a la función? (s/n): ");
+        String respuesta = scanner.nextLine();
+        if (respuesta.equalsIgnoreCase("s")) {
+            boolean agregarMas = true;
+            while (agregarMas) {
+                System.out.print("Ingrese la descripción de la promoción: ");
+                String descripcionPromocion = scanner.nextLine();
+                Promocion promocion = new Promocion(descripcionPromocion);
+                funcion.agregarPromocion(promocion);
+                System.out.print("¿Desea agregar otra promoción? (s/n): ");
+                respuesta = scanner.nextLine();
+                agregarMas = respuesta.equalsIgnoreCase("s");
+            }
+        }
+
         sala.agregarFuncion(funcion);
         System.out.println("Función registrada exitosamente.");
     }
@@ -213,6 +278,45 @@ public class CineApp {
         Opinion opinion = new Opinion(comentario, calificacion);
         pelicula.agregarOpinion(opinion);
         System.out.println("Opinión agregada exitosamente.");
+    }
+
+    private static void agregarActor(Scanner scanner) {
+        System.out.print("Ingrese el nombre del actor: ");
+        String nombre = scanner.nextLine();
+        while (nombre == null || nombre.isEmpty() || !nombre.matches("[a-zA-Z0-9 ]+")) {
+            System.out.print(
+                    "El nombre del actor no puede ser nulo, vacío o contener caracteres especiales. Ingrese el nombre del actor: ");
+            nombre = scanner.nextLine();
+        }
+        Actor actor = new Actor(nombre);
+        actores.add(actor);
+        System.out.println("Actor agregado exitosamente.");
+    }
+
+    private static void agregarDirector(Scanner scanner) {
+        System.out.print("Ingrese el nombre del director: ");
+        String nombre = scanner.nextLine();
+        while (nombre == null || nombre.isEmpty() || !nombre.matches("[a-zA-Z0-9 ]+")) {
+            System.out.print(
+                    "El nombre del director no puede ser nulo, vacío o contener caracteres especiales. Ingrese el nombre del director: ");
+            nombre = scanner.nextLine();
+        }
+        Director director = new Director(nombre);
+        directores.add(director);
+        System.out.println("Director agregado exitosamente.");
+    }
+
+    private static void agregarPromocion(Scanner scanner) {
+        System.out.print("Ingrese la descripción de la promoción: ");
+        String descripcion = scanner.nextLine();
+        while (descripcion == null || descripcion.isEmpty()) {
+            System.out.print(
+                    "La descripción de la promoción no puede ser nula o vacía. Ingrese la descripción de la promoción: ");
+            descripcion = scanner.nextLine();
+        }
+        Promocion promocion = new Promocion(descripcion);
+        promociones.add(promocion);
+        System.out.println("Promoción agregada exitosamente.");
     }
 
     private static Cine buscarCinePorNombre(String nombre) {
