@@ -144,7 +144,24 @@ public class CineApp {
             }
         }
 
-        Pelicula pelicula = new Pelicula(titulo, duracion, clasificacion, fechaEstreno);
+        System.out.print("Ingrese el género de la película: ");
+        String genero = scanner.nextLine();
+
+        System.out.print("Ingrese el idioma original de la película: ");
+        String idiomaOriginal = scanner.nextLine();
+
+        System.out.print("¿La película tiene subtítulos en español? (s/n): ");
+        boolean subtitulosEspanol = scanner.nextLine().equalsIgnoreCase("s");
+
+        ArrayList<String> paisesOrigen = new ArrayList<>();
+        System.out.print("Ingrese los países de origen de la película (separados por comas): ");
+        String paisesStr = scanner.nextLine();
+        for (String pais : paisesStr.split(",")) {
+            paisesOrigen.add(pais.trim());
+        }
+
+        Pelicula pelicula = new Pelicula(titulo, duracion, clasificacion, fechaEstreno, genero, idiomaOriginal,
+                subtitulosEspanol, paisesOrigen);
 
         // Agregar actores a la película
         System.out.print("¿Desea agregar actores a la película? (s/n): ");

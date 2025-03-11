@@ -6,11 +6,16 @@ public class Pelicula {
     private int duracion;
     private String clasificacion;
     private LocalDate fechaEstreno;
+    private String genero;
+    private String idiomaOriginal;
+    private boolean subtitulosEspanol;
+    private ArrayList<String> paisesOrigen;
     private ArrayList<Opinion> opiniones;
     private ArrayList<Actor> elenco;
     private ArrayList<Director> directores;
 
-    public Pelicula(String titulo, int duracion, String clasificacion, LocalDate fechaEstreno) {
+    public Pelicula(String titulo, int duracion, String clasificacion, LocalDate fechaEstreno, String genero,
+            String idiomaOriginal, boolean subtitulosEspanol, ArrayList<String> paisesOrigen) {
         if (titulo == null || titulo.isEmpty()) {
             throw new IllegalArgumentException("El título de la película no puede ser nulo o vacío.");
         }
@@ -25,11 +30,49 @@ public class Pelicula {
         this.duracion = duracion;
         this.clasificacion = clasificacion;
         this.fechaEstreno = fechaEstreno;
+        this.genero = genero;
+        this.idiomaOriginal = idiomaOriginal;
+        this.subtitulosEspanol = subtitulosEspanol;
+        this.paisesOrigen = paisesOrigen;
         this.opiniones = new ArrayList<>();
         this.elenco = new ArrayList<>();
         this.directores = new ArrayList<>();
     }
 
+    // Getters y setters para los nuevos atributos
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public String getIdiomaOriginal() {
+        return idiomaOriginal;
+    }
+
+    public void setIdiomaOriginal(String idiomaOriginal) {
+        this.idiomaOriginal = idiomaOriginal;
+    }
+
+    public boolean isSubtitulosEspanol() {
+        return subtitulosEspanol;
+    }
+
+    public void setSubtitulosEspanol(boolean subtitulosEspanol) {
+        this.subtitulosEspanol = subtitulosEspanol;
+    }
+
+    public ArrayList<String> getPaisesOrigen() {
+        return paisesOrigen;
+    }
+
+    public void setPaisesOrigen(ArrayList<String> paisesOrigen) {
+        this.paisesOrigen = paisesOrigen;
+    }
+
+    // Métodos existentes
     public String getTitulo() {
         return titulo;
     }
@@ -103,6 +146,10 @@ public class Pelicula {
                 ", duracion=" + duracion +
                 ", clasificacion='" + clasificacion + '\'' +
                 ", fechaEstreno=" + fechaEstreno +
+                ", genero='" + genero + '\'' +
+                ", idiomaOriginal='" + idiomaOriginal + '\'' +
+                ", subtitulosEspanol=" + subtitulosEspanol +
+                ", paisesOrigen=" + paisesOrigen +
                 ", opiniones=" + opiniones +
                 ", elenco=" + elenco +
                 ", directores=" + directores +
