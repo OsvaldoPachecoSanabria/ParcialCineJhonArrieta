@@ -250,6 +250,12 @@ public class CineApp {
     }
 
     private static void mostrarCartelera() {
+        if (cines.isEmpty()) {
+            limpiarPantalla();
+            System.out.println("No hay carteleras disponibles. Por favor, añada una cartelera.");
+            return;
+        }
+
         for (Cine cine : cines) {
             System.out.println("Cine: " + cine.getNombre());
             for (Sala sala : cine.getSalas()) {
@@ -258,6 +264,19 @@ public class CineApp {
                     System.out.println("    " + funcion);
                 }
             }
+        }
+    }
+
+    private static void limpiarPantalla() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (Exception e) {
+            System.out.println("Error al limpiar la pantalla.");
         }
     }
 
