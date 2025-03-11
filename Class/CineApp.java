@@ -207,9 +207,25 @@ public class CineApp {
                     "El nombre del cine no puede ser nulo, vacío o contener caracteres especiales. Ingrese el nombre del cine: ");
             nombreCine = scanner.nextLine();
         }
+
+        System.out.print("Ingrese la dirección del cine: ");
+        String direccionCine = scanner.nextLine();
+        while (direccionCine == null || direccionCine.isEmpty()) {
+            System.out.print("La dirección del cine no puede ser nula o vacía. Ingrese la dirección del cine: ");
+            direccionCine = scanner.nextLine();
+        }
+
+        System.out.print("Ingrese el teléfono del cine: ");
+        String telefonoCine = scanner.nextLine();
+        while (telefonoCine == null || telefonoCine.isEmpty() || !telefonoCine.matches("\\d+")) {
+            System.out.print(
+                    "El teléfono del cine no puede ser nulo, vacío o contener caracteres no numéricos. Ingrese el teléfono del cine: ");
+            telefonoCine = scanner.nextLine();
+        }
+
         Cine cine = buscarCinePorNombre(nombreCine);
         if (cine == null) {
-            cine = new Cine(nombreCine);
+            cine = new Cine(nombreCine, direccionCine, telefonoCine);
             cines.add(cine);
         }
 
